@@ -1,6 +1,6 @@
 const { Schema } = require('mongoose');
 
-const equipmentSchema = require('./Equipment');
+const equipmentSchema = require('./Equipment'); 
 
 const characterSchema = new Schema(
     {
@@ -10,45 +10,67 @@ const characterSchema = new Schema(
         },
         vigor: {
             type: Number,
+            default: 0,
             validate: {
                 validator: Number.isInteger,
-                message: `{Value} is not an integer value for Vigor`,
-            }
+                message: '{VALUE} is not an integer value for Vigor',
+            },
         },
         mind: {
             type: Number,
-            validate: Number.isInteger,
-            message: `{Value} is not an integer value for Mind`,
+            default: 0,
+            validate: {
+                validator: Number.isInteger,
+                message: '{VALUE} is not an integer value for Mind',
+            },
         },
         endurance: {
             type: Number,
-            validate: Number.isInteger,
-            message: `{Value} is not an integer value for Endurance`,
+            default: 0,
+            validate: {
+                validator: Number.isInteger,
+                message: '{VALUE} is not an integer value for Endurance',
+            },
         },
         strength: {
             type: Number,
-            validate: Number.isInteger,
-            message: `{Value} is not an integer value for Strength`,
+            default: 0,
+            validate: {
+                validator: Number.isInteger,
+                message: '{VALUE} is not an integer value for Strength',
+            },
         },
         dexterity: {
             type: Number,
-            validate: Number.isInteger,
-            message: `{Value} is not an integer for Dexterity`,
+            default: 0,
+            validate: {
+                validator: Number.isInteger,
+                message: '{VALUE} is not an integer value for Dexterity',
+            },
         },
         intelligence: {
             type: Number,
-            validate: Number.isInteger,
-            message: `{Value} is not an integer value for Intelligence`,
+            default: 0,
+            validate: {
+                validator: Number.isInteger,
+                message: '{VALUE} is not an integer value for Intelligence',
+            },
         },
         faith: {
             type: Number,
-            validate: Number.isInteger,
-            message: `{Value} is not an integer value for Faith`,
+            default: 0,
+            validate: {
+                validator: Number.isInteger,
+                message: '{VALUE} is not an integer value for Faith',
+            },
         },
         arcane: {
             type: Number,
-            validate: Number.isInteger,
-            message: `{Value} is not an integer value for Arcane`,
+            default: 0,
+            validate: {
+                validator: Number.isInteger,
+                message: '{VALUE} is not an integer value for Arcane',
+            },
         },
         equipment: [equipmentSchema]
     }
