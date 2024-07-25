@@ -8,39 +8,60 @@ const equipmentSchema = new Schema(
         },
         equipmentType: {
             type: String,
-            require: true,
+            required: true,
+        },
+        weight: {
+            type: Number,
+            required: true,
+            validate: {
+                validator: Number.isInteger,
+                message: '{VALUE} is not an integer for Weight',
+            },
         },
         strengthReq: {
             type: Number,
-            require: true,
-            validate: Number.isInteger,
-            message: `{Value} is not an integer for Strength Requirement`,
+            required: true,
+            validate: {
+                validator: Number.isInteger,
+                message: '{VALUE} is not an integer for Strength Requirement',
+            },
         },
         dexterityReq: {
             type: Number,
-            require: true,
-            validate: Number.isInteger,
-            message: `{Value} is not an integer for Dexterity Requirement`,
+            required: true,
+            validate: {
+                validator: Number.isInteger,
+                message: '{VALUE} is not an integer for Dexterity Requirement',
+            },
         },
         intelligenceReq: {
             type: Number,
-            require: true,
-            validate: Number.isInteger,
-            message: `{Value} is not an integer for Intelligence Requirement`,
+            required: true,
+            validate: {
+                validator: Number.isInteger,
+                message: '{VALUE} is not an integer for Intelligence Requirement',
+            },
         },
         faithReq: {
             type: Number,
-            require: true,
-            validate: Number.isInteger,
-            message: `{Value} is not an integer for Faith Requirement`,
+            required: true,
+            validate: {
+                validator: Number.isInteger,
+                message: '{VALUE} is not an integer for Faith Requirement',
+            },
         },
         arcaneReq: {
             type: Number,
-            require: true,
-            validate: Number.isInteger,
-            message: `{Value} is not an integer for Arcane Requirement`,
+            required: true,
+            validate: {
+                validator: Number.isInteger,
+                message: '{VALUE} is not an integer for Arcane Requirement',
+            },
+        },
+        special: {
+            type: String,
         }
     }
 );
 
-export default equipmentSchema;
+module.exports = equipmentSchema;
