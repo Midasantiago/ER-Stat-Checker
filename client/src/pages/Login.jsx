@@ -47,14 +47,6 @@ const Login = () => {
                 <form onSubmit={handleFormSubmit} className="space-y-4">
                     <input
                         className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Enter your username"
-                        name="username"
-                        type="text"
-                        value={formState.username}
-                        onChange={handleChange}
-                    />
-                    <input
-                        className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Enter your email"
                         name="email"
                         type="email"

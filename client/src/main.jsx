@@ -8,6 +8,8 @@ import './assets/style/style.css'
 import HomePage from './pages/HomePage.jsx';
 import Signup from './pages/Signup.jsx';
 import Login from './pages/Login.jsx';
+import Account from './pages/Account.jsx'
+import Character from './pages/Character.jsx;'
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />
+      },
+      {
+        path: '/account',
+        element: <Account />
+      },
+      {
+        path: '/character/:id',
+        element: <Character />
       }
     ]
   }
