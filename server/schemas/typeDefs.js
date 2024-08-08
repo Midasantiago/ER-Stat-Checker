@@ -42,6 +42,7 @@ const typeDefs = `
     type Query {
     user (username: String!, email: String!): User
     me: User
+    character (characterId: ID!): Character
     }
 
     type Mutation {

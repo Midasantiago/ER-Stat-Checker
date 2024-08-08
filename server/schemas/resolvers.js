@@ -11,6 +11,33 @@ const resolvers = {
                 return User.findOne({ _id: context.user._id });
             }
             throw new AuthenticationError('You need to be logged in!');
+        },
+        character: async (parent, { characterId }, context) => {
+            if (context.user) {
+                try {
+                    // Find the user by their ID (assuming context.user.id contains the user's ID)
+                    const user = await User.findOne({ _id: context.user._id });
+                    console.log(user);
+
+                    if (!user) {
+                        throw new Error('User not found');
+                    }
+
+                    // Find the specific character by ID within the user's characters
+                    const character = user.characters.id(characterId);
+
+                    if (!character) {
+                        throw new Error('Character not found');
+                    }
+
+                    return character;
+                } catch (error) {
+                    console.error(error);
+                    throw new Error('Failed to fetch character');
+                }
+            } else {
+                throw new Error('User not authenticated');
+            }
         }
     },
 
