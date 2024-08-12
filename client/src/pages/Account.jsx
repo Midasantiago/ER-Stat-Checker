@@ -20,30 +20,6 @@ const Account = () => {
 
     const [newCharacterName, setNewCharacterName] = useState('');
 
-    const [updatedCharacterData, setUpdatedCharacterData] = useState({
-        characterName: '',
-        vigor: '',
-        mind: '',
-        endurance: '',
-        strength: '',
-        dexterity: '',
-        intelligence: '',
-        faith: '',
-        arcane: ''
-    });
-
-    const [equipmentData, setEquipmentData] = useState({
-        equipmentName: '',
-        equipmentType: '',
-        weight: '',
-        strengthReq: '',
-        dexterityReq: '',
-        intelligenceReq: '',
-        faithReq: '',
-        arcaneReq: '',
-        special: ''
-    });
-
     const { loading, data } = useQuery(QUERY_ME);
 
     useEffect(() => {
@@ -70,43 +46,10 @@ const Account = () => {
         setNewCharacterName(event.target.value);
     };
 
-    /*const handleInputChange = (event, setStateFunction) => {
-        const { name, value } = event.target;
-        setStateFunction(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    }; */
-
-    const parseCharacterData = (data) => ({
-        ...data,
-        vigor: parseInt(data.vigor, 10) || 0,
-        mind: parseInt(data.mind, 10) || 0,
-        endurance: parseInt(data.endurance, 10) || 0,
-        strength: parseInt(data.strength, 10) || 0,
-        dexterity: parseInt(data.dexterity, 10) || 0,
-        intelligence: parseInt(data.intelligence, 10) || 0,
-        faith: parseInt(data.faith, 10) || 0,
-        arcane: parseInt(data.arcane, 10) || 0,
-    });
-
-    const parseEquipmentData = (data) => ({
-        ...data,
-        weight: parseInt(data.weight, 10) || 0,
-        strengthReq: parseInt(data.strengthReq, 10) || 0,
-        dexterityReq: parseInt(data.dexterityReq, 10) || 0,
-        intelligenceReq: parseInt(data.intelligenceReq, 10) || 0,
-        faithReq: parseInt(data.faithReq, 10) || 0,
-        arcaneReq: parseInt(data.arcaneReq, 10) || 0,
-    });
-
     const [addCharacter] = useMutation(ADD_CHARACTER);
-    const [updateCharacter] = useMutation(UPDATE_CHARACTER);
     const [removeCharacter] = useMutation(REMOVE_CHARACTER);
-    const [addEquipment] = useMutation(ADD_EQUIPMENT);
-    const [removeEquipment] = useMutation(REMOVE_EQUIPMENT);
 
-    const handleCharacterSubmit = async function (newCharacterData) {
+    const handleCharacterSubmit = async function () {
         event.preventDefault();
         try {
             const { data } = await addCharacter({ variables: { characterName: newCharacterName } });
@@ -122,18 +65,6 @@ const Account = () => {
         }
     };
 
-    const handleUpdatedCharacterSubmit = async function (updatedCharacterData) {
-        event.preventDefault();
-        try {
-            const { data } = await updateCharacter({
-                variables: { ...updatedCharacterData }
-            });
-            console.log(data);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
     const handleRemoveCharacter = async function (characterId) {
         event.preventDefault();
         console.log(characterId);
@@ -141,35 +72,21 @@ const Account = () => {
             const { data } = await removeCharacter({
                 variables: { characterId }
             });
+            setUserData((prevState) => ({
+                ...prevState,
+                characters: prevState.characters.filter(
+                    (character) => character._id !== characterId
+                ),
+            }));
             console.log(data);
         } catch (error) {
             console.error(error);
         }
     };
 
-    const handleEquipmentSubmit = async function (characterId, equipmentData) {
-        event.preventDefault();
-        try {
-            const { data } = await addEquipment({
-                variables: { characterId, ...equipmentData }
-            });
-            console.log(data);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-    const handleRemoveEquipment = async function (characterId, EquipmentId) {
-        event.preventDefault();
-        try {
-            const { data } = await removeEquipment({
-                variables: { characterId, EquipmentId }
-            });
-            console.log(data);
-        } catch (error) {
-            console.error(error);
-        }
-    };
+    const handleCharacterClick = (characterId) => {
+        window.location.replace(`/character/${characterId}`);
+    }
 
     if (loading) return <div>Loading...</div>;
 
@@ -183,6 +100,12 @@ const Account = () => {
                         {userData.characters.map((character) => (
                             <div key={character._id} className="bg-gray-800 p-4 rounded shadow">
                                 <h2 className="text-xl font-bold text-white">{character.characterName}</h2>
+                                <button
+                                    onClick={() => handleCharacterClick(character._id)} // Set up navigation on click
+                                    className="mt-2 bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-700"
+                                >
+                                    View Details
+                                </button>
                                 <button
                                     onClick={() => handleRemoveCharacter(character._id)}
                                     className="mt-2 bg-red-500 text-white py-1 px-2 rounded hover:bg-red-700"

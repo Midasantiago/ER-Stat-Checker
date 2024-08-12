@@ -9,7 +9,7 @@ import HomePage from './pages/HomePage.jsx';
 import Signup from './pages/Signup.jsx';
 import Login from './pages/Login.jsx';
 import Account from './pages/Account.jsx'
-import Character from './pages/Character.jsx;'
+import Character from './pages/Character.jsx';
 
 const router = createBrowserRouter([
   {
@@ -19,10 +19,6 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage />
-      },
-      {
-        path: '/',
         element: <HomePage />
       },
       {
