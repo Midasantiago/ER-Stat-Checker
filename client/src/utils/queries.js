@@ -35,8 +35,8 @@ export const QUERY_ME = gql`
 `;
 
 export const QUERY_CHARACTER = gql`
-    query character {
-        character {
+    query character ($characterId: ID!) {
+        character (characterId: $characterId) {
             _id
             characterName
             vigor
