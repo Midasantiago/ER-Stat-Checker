@@ -84,6 +84,8 @@ const Character = () => {
         setShowEquipInputModal(false);
     };
 
+    // I have no clue how this is working. It scares me actually.
+    //-Edit NVM. I figured it out and now you will never know what the issue was.
     const handleCharacterInputChange = (event, setStateFunction) => {
         const { name, value } = event.target;
         const numericValue = parseInt(value, 10) || 0; // Convert to number or default to 0
@@ -140,6 +142,17 @@ const Character = () => {
             setTimeout(() => setNotification(''), 3000);
 
             setShowEquipInputModal(false);
+            setEquipmentData({
+                equipmentName: '',
+                equipmentType: '',
+                weight: 0,
+                strengthReq: 0,
+                dexterityReq: 0,
+                intelligenceReq: 0,
+                faithReq: 0,
+                arcaneReq: 0,
+                special: ''
+            });
         } catch (error) {
             console.error(error);
         }
@@ -202,7 +215,7 @@ const Character = () => {
                                             type="number"
                                             name={stat}
                                             value={updatedCharacterData[stat]}
-                                            onChange={(event) => handleInputChange(event, setUpdatedCharacterData)}
+                                            onChange={(event) => handleCharacterInputChange(event, setUpdatedCharacterData)}
                                             className="w-12 text-center border border-gray-300 rounded mx-2"
                                         />
                                         <IncBtn handleIncrement={() => handleIncrement(stat)} />
@@ -225,22 +238,60 @@ const Character = () => {
                 <div className="flex-1">
                     <h2 className="text-lg font-bold mt-4">Equipment</h2>
                     {character.equipment && character.equipment.length > 0 ? (
-                        <ul>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                             {character.equipment.map((equip) => (
-                                <div>
-                                <li key={equip._id.toString()}>{equip.equipmentName} - {equip.equipmentType}</li>
-                                <button
-                                    onClick={() => handleRemoveEquipment(equip._id)}
-                                    className="mt-2 bg-red-500 text-white py-1 px-2 rounded hover:bg-red-700"
-                                >
-                                    Remove
-                                </button>
+                                <div key={equip._id.toString()} className="bg-gray-800 p-3 rounded-lg shadow-lg">
+                                    <div>
+                                        <h3 className="text-lg font-semibold">{equip.equipmentName}</h3>
+                                        <p className="text-gray-400 text-sm">{equip.equipmentType}</p>
+                                        <button
+                                            onClick={() => handleRemoveEquipment(equip._id)}
+                                            className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-700 text-xs mt-2"
+                                        >
+                                            Remove
+                                        </button>
+                                    </div>
+                                    <div className="flex mt-2">
+                                        <div className="flex-1 text-center">
+                                            <p className="text-xs text-gray-400">STR</p>
+                                            <p className={`text-sm font-bold ${updatedCharacterData.strength >= equip.strengthReq ? 'text-green-500' : 'text-red-500'}`}>
+                                                {equip.strengthReq}
+                                            </p>
+                                        </div>
+                                        <div className="flex-1 text-center">
+                                            <p className="text-xs text-gray-400">DEX</p>
+                                            <p className={`text-sm font-bold ${updatedCharacterData.dexterity >= equip.dexterityReq ? 'text-green-500' : 'text-red-500'}`}>
+                                                {equip.dexterityReq}
+                                            </p>
+                                        </div>
+                                        <div className="flex-1 text-center">
+                                            <p className="text-xs text-gray-400">INT</p>
+                                            <p className={`text-sm font-bold ${updatedCharacterData.intelligence >= equip.intelligenceReq ? 'text-green-500' : 'text-red-500'}`}>
+                                                {equip.intelligenceReq}
+                                            </p>
+                                        </div>
+                                        <div className="flex-1 text-center">
+                                            <p className="text-xs text-gray-400">FAI</p>
+                                            <p className={`text-sm font-bold ${updatedCharacterData.faith >= equip.faithReq ? 'text-green-500' : 'text-red-500'}`}>
+                                                {equip.faithReq}
+                                            </p>
+                                        </div>
+                                        <div className="flex-1 text-center">
+                                            <p className="text-xs text-gray-400">ARC</p>
+                                            <p className={`text-sm font-bold ${updatedCharacterData.arcane >= equip.arcaneReq ? 'text-green-500' : 'text-red-500'}`}>
+                                                {equip.arcaneReq}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <p className="text-xs mt-2">{equip.special}</p>
                                 </div>
+
                             ))}
-                        </ul>
+                        </div>
                     ) : (
                         <p>No equipment found.</p>
                     )}
+
                     <div>
                         <button
                             className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
