@@ -26,6 +26,10 @@ const equipmentSchema = new Schema(
                 message: '{VALUE} is not an integer for Strength Requirement',
             },
         },
+        strengthScale: {
+            type: String,
+            default: "-"
+        },
         dexterityReq: {
             type: Number,
             required: true,
@@ -33,6 +37,10 @@ const equipmentSchema = new Schema(
                 validator: Number.isInteger,
                 message: '{VALUE} is not an integer for Dexterity Requirement',
             },
+        },
+        dexterityScale: {
+            type: String,
+            default: "-"
         },
         intelligenceReq: {
             type: Number,
@@ -42,6 +50,10 @@ const equipmentSchema = new Schema(
                 message: '{VALUE} is not an integer for Intelligence Requirement',
             },
         },
+        intelligenceScale: {
+            type: String,
+            default: "-"
+        },
         faithReq: {
             type: Number,
             required: true,
@@ -50,6 +62,10 @@ const equipmentSchema = new Schema(
                 message: '{VALUE} is not an integer for Faith Requirement',
             },
         },
+        faithScale: {
+            type: String,
+            default: "-"
+        },
         arcaneReq: {
             type: Number,
             required: true,
@@ -57,6 +73,13 @@ const equipmentSchema = new Schema(
                 validator: Number.isInteger,
                 message: '{VALUE} is not an integer for Arcane Requirement',
             },
+        },
+        arcaneScale: {
+            type: String,
+            default: "-"
+        },
+        ashOfWar : {
+            type: String,
         },
         special: {
             type: String,

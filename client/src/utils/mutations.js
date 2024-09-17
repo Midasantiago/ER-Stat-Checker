@@ -72,10 +72,16 @@ export const REMOVE_CHARACTER = gql`
                     equipmentType
                     weight
                     strengthReq
+                    strengthScale
                     dexterityReq
+                    dexterityScale
                     intelligenceReq
+                    intelligenceScale
                     faithReq
+                    faithScale
                     arcaneReq
+                    arcaneScale
+                    ashOfWar
                     special
                 }
             }
@@ -102,10 +108,16 @@ export const ADD_EQUIPMENT = gql`
                 equipmentType
                 weight
                 strengthReq
+                strengthScale
                 dexterityReq
+                dexterityScale
                 intelligenceReq
+                intelligenceScale
                 faithReq
+                faithScale
                 arcaneReq
+                arcaneScale
+                ashOfWar
                 special
             }
         }
@@ -131,10 +143,16 @@ export const REMOVE_EQUIPMENT = gql`
                 equipmentType
                 weight
                 strengthReq
+                strengthScale
                 dexterityReq
+                dexterityScale
                 intelligenceReq
+                intelligenceScale
                 faithReq
+                faithScale
                 arcaneReq
+                arcaneScale
+                ashOfWar
                 special
             }
         }

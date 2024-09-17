@@ -27,10 +27,16 @@ const typeDefs = `
        equipmentType: String!
        weight: Int!
        strengthReq: Int!
+       strengthScale: String
        dexterityReq: Int!
+       dexterityScale: String
        intelligenceReq: Int!
+       intelligenceScale: String
        faithReq: Int!
+       faithScale: String
        arcaneReq: Int!
+       arcaneScale: String
+       ashOfWar: String
        special: String 
     }
 
@@ -72,10 +78,16 @@ const typeDefs = `
         equipmentType: String!
         weight: Int!
         strengthReq: Int!
+        strengthScale: String
         dexterityReq: Int!
+        dexterityScale: String
         intelligenceReq: Int!
+        intelligenceScale: String
         faithReq: Int!
+        faithScale: String
         arcaneReq: Int!
+        arcaneScale: String
+        ashOfWar: String
         special: String
     }
 `;

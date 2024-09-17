@@ -23,10 +23,16 @@ export const QUERY_ME = gql`
                     equipmentType
                     weight
                     strengthReq
+                    strengthScale
                     dexterityReq
+                    dexterityScale
                     intelligenceReq
+                    intelligenceScale
                     faithReq
+                    faithScale
                     arcaneReq
+                    arcaneScale
+                    ashOfWar
                     special
                 }
             }
@@ -53,10 +59,16 @@ export const QUERY_CHARACTER = gql`
                 equipmentType
                 weight
                 strengthReq
+                strengthScale
                 dexterityReq
+                dexterityScale
                 intelligenceReq
+                intelligenceScale
                 faithReq
+                faithScale
                 arcaneReq
+                arcaneScale
+                ashOfWar
                 special
             }
         }
