@@ -51,10 +51,16 @@ const Character = () => {
         equipmentType: '',
         weight: 0,
         strengthReq: 0,
+        strengthScale: '-',
         dexterityReq: 0,
+        dexterityScale: '-',
         intelligenceReq: 0,
+        intelligenceScale: '-',
         faithReq: 0,
+        faithScale: '-',
         arcaneReq: 0,
+        arcaneScale: '-',
+        ashOfWar: '',
         special: ''
     });
 
@@ -147,10 +153,16 @@ const Character = () => {
                 equipmentType: '',
                 weight: 0,
                 strengthReq: 0,
+                strengthScale: '-',
                 dexterityReq: 0,
+                dexterityScale: '-',
                 intelligenceReq: 0,
+                intelligenceScale: '-',
                 faithReq: 0,
+                faithScale: '-',
                 arcaneReq: 0,
+                arcaneScale: '-',
+                ashOfWar: '',
                 special: ''
             });
         } catch (error) {
@@ -194,10 +206,15 @@ const Character = () => {
 
     const character = data.character;
 
+    let playerLevel = character.vigor + character.mind + character.endurance + character.strength + character.dexterity + character.intelligence + character.faith + character.arcane;
+
     return (
         <div className="min-h-screen bg-gray-900 text-white p-4">
             <Header />
-            <h1 className="text-2xl font-bold mb-4">{character.characterName}</h1>
+            <div className="mb-4 mt-4">
+                <h1 className="text-3xl font-bold mb-2">{character.characterName}</h1>
+                <h2 className="text-xl font-medium text-gray-400">Player Level: <span className="text-blue-400">{playerLevel}</span></h2>
+            </div>
             <div className="flex">
                 {/* Character Information Form */}
                 <div className="flex-1 mr-4">
@@ -257,32 +274,38 @@ const Character = () => {
                                             <p className={`text-sm font-bold ${updatedCharacterData.strength >= equip.strengthReq ? 'text-green-500' : 'text-red-500'}`}>
                                                 {equip.strengthReq}
                                             </p>
+                                            <p>{equip.strengthScale} </p>
                                         </div>
                                         <div className="flex-1 text-center">
                                             <p className="text-xs text-gray-400">DEX</p>
                                             <p className={`text-sm font-bold ${updatedCharacterData.dexterity >= equip.dexterityReq ? 'text-green-500' : 'text-red-500'}`}>
                                                 {equip.dexterityReq}
                                             </p>
+                                            <p>{equip.dexterityScale} </p>
                                         </div>
                                         <div className="flex-1 text-center">
                                             <p className="text-xs text-gray-400">INT</p>
                                             <p className={`text-sm font-bold ${updatedCharacterData.intelligence >= equip.intelligenceReq ? 'text-green-500' : 'text-red-500'}`}>
                                                 {equip.intelligenceReq}
                                             </p>
+                                            <p>{equip.intelligenceScale} </p>
                                         </div>
                                         <div className="flex-1 text-center">
                                             <p className="text-xs text-gray-400">FAI</p>
                                             <p className={`text-sm font-bold ${updatedCharacterData.faith >= equip.faithReq ? 'text-green-500' : 'text-red-500'}`}>
                                                 {equip.faithReq}
                                             </p>
+                                            <p>{equip.faithScale} </p>
                                         </div>
                                         <div className="flex-1 text-center">
                                             <p className="text-xs text-gray-400">ARC</p>
                                             <p className={`text-sm font-bold ${updatedCharacterData.arcane >= equip.arcaneReq ? 'text-green-500' : 'text-red-500'}`}>
                                                 {equip.arcaneReq}
                                             </p>
+                                            <p>{equip.arcaneScale} </p>
                                         </div>
                                     </div>
+                                    <p className="text-xs mt-2">{equip.ashOfWar}</p>
                                     <p className="text-xs mt-2">{equip.special}</p>
                                 </div>
 
@@ -316,14 +339,59 @@ const Character = () => {
                                 placeholder="Equipment Name"
                                 className="border border-gray-300 p-2 rounded w-full mb-4"
                             />
-                            <input
-                                type="text"
+                            <select
                                 name="equipmentType"
                                 value={equipmentData.equipmentType}
                                 onChange={handleEquipmentInput}
-                                placeholder="Equipment Type"
                                 className="border border-gray-300 p-2 rounded w-full mb-4"
-                            />
+                            >
+                                <option value="">Select Equipment Type</option>
+                                <option value="Dagger">Dagger</option>
+                                <option value="Straight Sword">Straight Sword</option>
+                                <option value="Greatsword">Greatsword</option>
+                                <option value="Colossal Sword">Colossal Sword</option>
+                                <option value="Thrusting Sword">Thrusting Sword</option>
+                                <option value="Heavy Thrusting Sword">Heavy Thrusting Sword</option>
+                                <option value="Curved Sword">Curved Sword</option>
+                                <option value="Curved Greatsword">Curved Greatsword</option>
+                                <option value="Katana">Katana</option>
+                                <option value="Twinblade">Twinblade</option>
+                                <option value="Axe">Axe</option>
+                                <option value="Greataxe">Greataxe</option>
+                                <option value="Hammer">Hammer</option>
+                                <option value="Flail">Flail</option>
+                                <option value="Great Hammer">Great Hammer</option>
+                                <option value="Colossal Weapon">Colossal Weapon</option>
+                                <option value="Spear">Spear</option>
+                                <option value="Great Spear">Great Spear</option>
+                                <option value="Halberd">Halberd</option>
+                                <option value="Reaper">Reaper</option>
+                                <option value="Whip">Whip</option>
+                                <option value="Fist">Fist</option>
+                                <option value="Claw">Claw</option>
+                                <option value="Light Bow">Light Bow</option>
+                                <option value="Bow">Bow</option>
+                                <option value="Greatbow">Greatbow</option>
+                                <option value="Crossbow">Crossbow</option>
+                                <option value="Ballista">Ballista</option>
+                                <option value="Glinstone Staff">Glinstone Staff</option>
+                                <option value="Sacred Seal">Sacred Seal</option>
+                                <option value="Torch">Torch</option>
+                                <option value="Tool">Tool</option>
+                                <option value="Thrusting Shield">Thrusting Shield</option>
+                                <option value="Hand-to-Hand Art">Hand-to-Hand Art</option>
+                                <option value="Throwing Blade">Throwing Blade</option>
+                                <option value="Backhand Blade">Backhand Blade</option>
+                                <option value="Perfume Bottle">Perfum Bottle</option>
+                                <option value="Beast Claw">Beast Claw</option>
+                                <option value="Light Greatsword">Light Greatsword</option>
+                                <option value="Great  Katana">Great Katana</option>
+                                <option value="Sorcery">Sorcery</option>
+                                <option value="Incantation">Incantation</option>
+                                <option value="Talisman">Talisman</option>
+                                {/* Add more options as needed */}
+                            </select>
+
 
                             <div className="mb-4 flex space-x-4">
                                 <div className="flex-1">
@@ -336,55 +404,120 @@ const Character = () => {
                                         className="w-full text-center border border-gray-300 rounded p-2"
                                     />
                                 </div>
-                                <div className="flex-1">
-                                    <label className="block text-black font-semibold mb-1">Strength</label>
-                                    <input
-                                        type="number"
-                                        name="strengthReq"
-                                        value={equipmentData.strengthReq}
-                                        onChange={handleEquipmentInput}
-                                        className="w-full text-center border border-gray-300 rounded p-2"
-                                    />
+                                <div>
+                                    <div className="flex-1">
+                                        <label className="block text-black font-semibold mb-1">Strength</label>
+                                        <input
+                                            type="number"
+                                            name="strengthReq"
+                                            value={equipmentData.strengthReq}
+                                            onChange={handleEquipmentInput}
+                                            className="w-full text-center border border-gray-300 rounded p-2"
+                                        />
+                                    </div>
+                                    <div className="flex-1">
+                                        <label className="block text-black font-semibold mb-1">Strength Scaling</label>
+                                        <input
+                                            type="text"
+                                            name="strengthScale"
+                                            value={equipmentData.strengthScale}
+                                            onChange={handleEquipmentInput}
+                                            placeholder="UpperCase Please"
+                                            className="w-full text-center border border-gray-300 rounded p-2"
+                                        />
+                                    </div>
                                 </div>
-                                <div className="flex-1">
-                                    <label className="block text-black font-semibold mb-1">Dexterity</label>
-                                    <input
-                                        type="number"
-                                        name="dexterityReq"
-                                        value={equipmentData.dexterityReq}
-                                        onChange={handleEquipmentInput}
-                                        className="w-full text-center border border-gray-300 rounded p-2"
-                                    />
+                                <div>
+                                    <div className="flex-1">
+                                        <label className="block text-black font-semibold mb-1">Dexterity</label>
+                                        <input
+                                            type="number"
+                                            name="dexterityReq"
+                                            value={equipmentData.dexterityReq}
+                                            onChange={handleEquipmentInput}
+                                            className="w-full text-center border border-gray-300 rounded p-2"
+                                        />
+                                    </div>
+                                    <div className="flex-1">
+                                        <label className="block text-black font-semibold mb-1">Dexterity Scaling</label>
+                                        <input
+                                            type="text"
+                                            name="dexterityScale"
+                                            value={equipmentData.dexterityScale}
+                                            onChange={handleEquipmentInput}
+                                            placeholder="Uppercase Please"
+                                            className="w-full text-center border border-gray-300 rounded p-2"
+                                        />
+                                    </div>
                                 </div>
-                                <div className="flex-1">
-                                    <label className="block text-black font-semibold mb-1">Intelligence</label>
-                                    <input
-                                        type="number"
-                                        name="intelligenceReq"
-                                        value={equipmentData.intelligenceReq}
-                                        onChange={handleEquipmentInput}
-                                        className="w-full text-center border border-gray-300 rounded p-2"
-                                    />
+                                <div>
+                                    <div className="flex-1">
+                                        <label className="block text-black font-semibold mb-1">Intelligence</label>
+                                        <input
+                                            type="number"
+                                            name="intelligenceReq"
+                                            value={equipmentData.intelligenceReq}
+                                            onChange={handleEquipmentInput}
+                                            className="w-full text-center border border-gray-300 rounded p-2"
+                                        />
+                                    </div>
+                                    <div className="flex-1">
+                                        <label className="block text-black font-semibold mb-1">Intelligence Scaling</label>
+                                        <input
+                                            type="text"
+                                            name="intelligenceScale"
+                                            value={equipmentData.intelligenceScale}
+                                            onChange={handleEquipmentInput}
+                                            placeholder="Uppercase Please"
+                                            className="w-full text-center border border-gray-300 rounded p-2"
+                                        />
+                                    </div>
                                 </div>
-                                <div className="flex-1">
-                                    <label className="block text-black font-semibold mb-1">Faith</label>
-                                    <input
-                                        type="number"
-                                        name="faithReq"
-                                        value={equipmentData.faithReq}
-                                        onChange={handleEquipmentInput}
-                                        className="w-full text-center border border-gray-300 rounded p-2"
-                                    />
+                                <div>
+                                    <div className="flex-1">
+                                        <label className="block text-black font-semibold mb-1">Faith</label>
+                                        <input
+                                            type="number"
+                                            name="faithReq"
+                                            value={equipmentData.faithReq}
+                                            onChange={handleEquipmentInput}
+                                            className="w-full text-center border border-gray-300 rounded p-2"
+                                        />
+                                    </div>
+                                    <div className="flex-1">
+                                        <label className="block text-black font-semibold mb-1">Faith Scaling</label>
+                                        <input
+                                            type="text"
+                                            name="faithScale"
+                                            value={equipmentData.faithScale}
+                                            onChange={handleEquipmentInput}
+                                            placeholder="Uppercase Please"
+                                            className="w-full text-center border border-gray-300 rounded p-2"
+                                        />
+                                    </div>
                                 </div>
-                                <div className="flex-1">
-                                    <label className="block text-black font-semibold mb-1">Arcane</label>
-                                    <input
-                                        type="number"
-                                        name="arcaneReq"
-                                        value={equipmentData.arcaneReq}
-                                        onChange={handleEquipmentInput}
-                                        className="w-full text-center border border-gray-300 rounded p-2"
-                                    />
+                                <div>
+                                    <div className="flex-1">
+                                        <label className="block text-black font-semibold mb-1">Arcane</label>
+                                        <input
+                                            type="number"
+                                            name="arcaneReq"
+                                            value={equipmentData.arcaneReq}
+                                            onChange={handleEquipmentInput}
+                                            className="w-full text-center border border-gray-300 rounded p-2"
+                                        />
+                                    </div>
+                                    <div className="flex-1">
+                                        <label className="block text-black font-semibold mb-1">Arcane Scaling</label>
+                                        <input
+                                            type="text"
+                                            name="arcaneScale"
+                                            value={equipmentData.arcaneScale}
+                                            onChange={handleEquipmentInput}
+                                            placeholder="Uppercase Please"
+                                            className="w-full text-center border border-gray-300 rounded p-2"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                             <input
@@ -393,6 +526,14 @@ const Character = () => {
                                 value={equipmentData.special}
                                 onChange={handleEquipmentInput}
                                 placeholder="Special"
+                                className="border border-gray-300 p-2 rounded w-full mb-4"
+                            />
+                            <input
+                                type="text"
+                                name="ashOfWar"
+                                value={equipmentData.ashOfWar}
+                                onChange={handleEquipmentInput}
+                                placeholder="Ash of War"
                                 className="border border-gray-300 p-2 rounded w-full mb-4"
                             />
                             <div className="flex justify-end">
