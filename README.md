@@ -4,6 +4,10 @@
 
 Elden Ring Equipment Manager is a web-based application designed to help players manage their character’s equipment. Users can add, view, and remove equipment while monitoring whether their character meets the stat requirements for each piece of gear. The app provides dynamic stat validation with conditional styling, giving a clear overview of which items are usable based on the character's attributes.
 
+## Screenshot
+
+![Full Application View](assets/ERStatChecker-SS.PNG)
+
 ## Table of Contents
 
 - [Installation](#installation)
