@@ -10,6 +10,7 @@ import Signup from './pages/Signup.jsx';
 import Login from './pages/Login.jsx';
 import Account from './pages/Account.jsx'
 import Character from './pages/Character.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx'
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
         element: <HomePage />
       },
       {
+        path: '/character/guest',
+        element: <Character />
+      },
+      {
         path: '/signup',
         element: <Signup />
       },
@@ -31,11 +36,17 @@ const router = createBrowserRouter([
       },
       {
         path: '/account',
-        element: <Account />
+        element:
+        <ProtectedRoute>
+          <Account />
+        </ProtectedRoute>
       },
       {
         path: '/character/:id',
-        element: <Character />
+        element: 
+        <ProtectedRoute>
+          <Character />
+        </ProtectedRoute>
       }
     ]
   }

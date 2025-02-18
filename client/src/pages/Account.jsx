@@ -29,10 +29,10 @@ const Account = () => {
     }, [loading, data]);
 
     // Login Check. If fails, redirects to login page
-    const isLoggedIn = Auth.loggedIn();
+    /*const isLoggedIn = Auth.loggedIn();
     if (!isLoggedIn) {
         window.location.replace('/');
-    };
+    };*/
 
     const handleOpenModal = () => {
         setShowModal(true);

@@ -11,7 +11,11 @@ const HomePage = () => {
                 </div>
 
                 <div className="mt-8">
-                    <p className="text-xl mb-4">Just Sign Up or Login to begin testing</p>
+                    <a href='/character/guest' className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded">Try It Out Before Signing Up!</a>
+                </div>
+
+                <div className="mt-8">
+                    <p className="text-xl mb-4">Sign Up or Login to begin!</p>
                     <div className="flex justify-center space-x-4">
                         <a href="/signup" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Signup</a>
                         <a href="/login" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Login</a>

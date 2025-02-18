@@ -18,15 +18,11 @@ const Character = () => {
     const { id } = useParams();
     console.log(id);
 
-    const { loading, data } = useQuery(QUERY_CHARACTER, {
-        variables: { characterId: id }
-    });
-
-    // Login Check. If fails, redirects to login page
     const isLoggedIn = Auth.loggedIn();
-    if (!isLoggedIn) {
-        window.location.replace('/');
-    };
+
+    const { loading, data } = id ? useQuery(QUERY_CHARACTER, {
+        variables: { characterId: id }
+    }) : { loading: false, data: null };
 
     const [updateCharacter] = useMutation(UPDATE_CHARACTER);
     const [addEquipment] = useMutation(ADD_EQUIPMENT);
@@ -119,6 +115,11 @@ const Character = () => {
 
     const handleUpdatedCharacterSubmit = async function () {
         event.preventDefault();
+        if (!isLoggedIn) {
+            alert('Sign up to save your Character!');
+            Navigate('/login');
+            return;
+        };
         try {
             const { data } = await updateCharacter({
                 variables: {
@@ -202,9 +203,9 @@ const Character = () => {
     };
 
     if (loading) return <div>Loading...</div>;
-    if (!data) return <div> No data found</div>
+    //if (!data) return <div> No data found</div>
 
-    const character = data.character;
+    const character = updatedCharacterData;
 
     let playerLevel = character.vigor + character.mind + character.endurance + character.strength + character.dexterity + character.intelligence + character.faith + character.arcane;
 
