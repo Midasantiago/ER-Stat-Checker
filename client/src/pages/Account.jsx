@@ -92,7 +92,7 @@ const Account = () => {
 
     return (
         <div className="min-h-screen bg-gray-900 text-white">
-            <Header />
+            <Header isLoggedIn={isLoggedIn}/>
             <div className="p-4">
                 <h1 className="text-2xl font-bold mb-4">Your Characters</h1>
                 {userData.characters && userData.characters.length > 0 ? (
